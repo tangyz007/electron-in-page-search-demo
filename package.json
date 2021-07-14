@@ -1,0 +1,24 @@
+{
+  "name": "electron-learn",
+  "version": "1.0.0",
+  "description": "Dummy project to learn electron",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^13.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangyz007/electron-learn.git"
+  },
+  "author": "Tim Tang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tangyz007/electron-learn/issues"
+  },
+  "homepage": "https://github.com/tangyz007/electron-learn#readme"
+}
