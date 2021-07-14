@@ -4,7 +4,8 @@
   "description": "Dummy project to learn electron",
   "main": "main.js",
   "dependencies": {
-    "electron": "^13.1.6"
+    "electron": "^13.1.6",
+    "electron-prompt": "^1.6.2"
   },
   "devDependencies": {},
   "scripts": {
