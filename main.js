@@ -28,13 +28,13 @@ function createWindow () {
   win.on('closed', () => {
     win = null
   })
-  
-  // 监听渲染进程发送的消息
+ 
+  // add listener to message sent in renderer processs
 ipcMain.on('asynchronous-message', (event, arg) => {
   console.log(arg)
   // const reply = arg.split('').reverse().join('');
   // console.log('reply: ', reply);
-  // 发送消息到主进程
+  // send message to main process
   event.sender.send('asynchronous-reply', reply);
 });
 
