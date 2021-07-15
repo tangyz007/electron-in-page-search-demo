@@ -42,10 +42,10 @@ var search_button = document.getElementById('btn_search')
 search_button.onclick = function () {
     var message = document.getElementById('message').value;
     console.log(message)
-    // 使用 ipcRenderer.send 向主进程发送消息。
+    // ipcRenderer.send to send to main process
     ipcRenderer.send('asynchronous-message', message);
   }
-  // 监听主进程返回的消息
+  //
   ipcRenderer.on('asynchronous-reply', function (event, arg) {
     alert(arg);
   });
