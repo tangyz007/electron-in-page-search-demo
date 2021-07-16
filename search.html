@@ -17,8 +17,9 @@
     <script>
         const { ipcRenderer } = require('electron')
         document.getElementById("search_word").addEventListener("input", function(){
-            ipcRenderer.send('asynchronous-message', document.getElementById("search_word").value);
-            // document.getElementById("pw").innerHTML = document.getElementById("search_word").value
+          var search_input = document.getElementById("search_word").value
+          ipcRenderer.send('search', search_input);
+            document.getElementById("pw").innerHTML = search_input
         })
         document.getElementById("btn_search").addEventListener("click", search);
 
