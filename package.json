@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "electron": "^13.1.6",
+    "electron-find-in-page": "^1.0.8",
     "electron-prompt": "^1.6.2"
   },
   "devDependencies": {},

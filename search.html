@@ -18,14 +18,40 @@
         const { ipcRenderer } = require('electron')
         document.getElementById("search_word").addEventListener("input", function(){
           var search_input = document.getElementById("search_word").value
-          ipcRenderer.send('search', search_input);
-            document.getElementById("pw").innerHTML = search_input
+          if(search_input !== null && search_input !== ""){
+            ipcRenderer.send('search', search_input);
+          }else{
+            ipcRenderer.send('clear');
+          }
+          
         })
-        document.getElementById("btn_search").addEventListener("click", search);
+        document.getElementById("go_prev_btn").addEventListener("click", function(){
+          var search_input = document.getElementById("search_word").value
+          if(search_input !== null && search_input !== ""){
+            ipcRenderer.send('search_prev_word', search_input);
+          }else{
+            ipcRenderer.send('clear');
+          }
+          
+        })
+        document.getElementById("go_next_btn").addEventListener("click", function(){
+          var search_input = document.getElementById("search_word").value
+          if(search_input !== null && search_input !== ""){
+            ipcRenderer.send('search_next_word', search_input);
+          }else{
+            ipcRenderer.send('clear');
+          }
+          
+        })
+        document.getElementById("close_btn").addEventListener("click", function(){
+          
+            ipcRenderer.send('close_search');
+          
+          
+        })
 
-        function search() {
-        document.getElementById("message").value = "search";
-}
+        
+
     </script>
   </body>
 </html>

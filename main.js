@@ -39,14 +39,33 @@ function createWindow () {
             contextIsolation: false,
         }})
           child.loadURL(searchURL)
-          child.on('closed', () => {
-            child = null
+          child.on('close', () => {
+            child = null;
+            ipcMain.removeAllListeners();
+            win.webContents.stopFindInPage('clearSelection');
+            globalShortcut.unregister('CommandOrControl+F')
           })
           // add listener to message sent in renderer processs
+          win.webContents.on('found-in-page', (event, result) => {
+            console.log(result.activeMatchOrdinal);
+          })
           ipcMain.on('search', (event, arg) => {
             // window.alert(arg);
-            console.log(arg);
             win.webContents.findInPage(arg);
+          });
+          ipcMain.on('clear', () => {
+            win.webContents.stopFindInPage('clearSelection');
+          });
+          ipcMain.on('search_next_word', (event, arg) => {
+            win.webContents.findInPage(arg);
+          });
+          ipcMain.on('search_prev_word', (event, arg) => {
+            const options = {forward: false};
+            win.webContents.findInPage(arg, options);
+          });
+          ipcMain.on('close_search', () => {
+            win.webContents.stopFindInPage('clearSelection');
+            child.close();
           });
          
       }
