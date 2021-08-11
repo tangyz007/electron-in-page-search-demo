@@ -6,14 +6,6 @@ let win
 let child
 const winURL = 'file://' + path.normalize(`${__dirname}/index.html`)
 const searchURL = 'file://' + path.normalize(`${__dirname}/search.html`)
-// const searchBox = (
-//   <div
-//     id="modalbox"
-//     style={{ display: 'none', position: 'fixed', zIndex: 1 }}
-//   ><input type="text" onChange={Calls.searchPage} />
-//   </div>);
-// const winURL = '../index.html'
-// const search_win = new BrowserWindow({ width: 200, height: 100, frame: false })
 function createWindow () {   
   win = new BrowserWindow({ 
     width: 1280,
@@ -47,20 +39,20 @@ function createWindow () {
           })
           // add listener to message sent in renderer processs
           win.webContents.on('found-in-page', (event, result) => {
-            console.log(result.activeMatchOrdinal);
+            console.log(result.activeMatchOrdinal.toString() + ' in ' + result.matches.toString());
+            console.log(result.selectionArea);
           })
           ipcMain.on('search', (event, arg) => {
-            // window.alert(arg);
-            win.webContents.findInPage(arg);
+            win.webContents.findInPage(arg,{findNext: true});
           });
           ipcMain.on('clear', () => {
             win.webContents.stopFindInPage('clearSelection');
           });
           ipcMain.on('search_next_word', (event, arg) => {
-            win.webContents.findInPage(arg);
+            win.webContents.findInPage(arg,{findNext: false});
           });
           ipcMain.on('search_prev_word', (event, arg) => {
-            const options = {forward: false};
+            const options = {forward: false, findNext: false};
             win.webContents.findInPage(arg, options);
           });
           ipcMain.on('close_search', () => {
